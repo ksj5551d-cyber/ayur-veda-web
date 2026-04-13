@@ -26,7 +26,7 @@ export default function ClinicalApproach() {
   ];
 
   return (
-    <section className="w-full py-10 md:py-14 bg-gradient-to-b from-white to-secondary/30">
+    <section className="w-full py-10 md:py-14 bg-gradient-to-b from-white top-50 to-secondary/30">
       <div className="max-w-7xl mx-auto px-6 relative z-10 mt-23">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

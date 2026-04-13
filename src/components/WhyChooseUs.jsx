@@ -1,78 +1,113 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UserCheck, Sliders, Clock } from "lucide-react";
+import { UserCheck, Sliders, Clock, Star } from "lucide-react";
 
 export default function WhyChooseUs() {
-  const reasons = [
-    {
-      icon: UserCheck,
-      title: "Doctor-Led & Personally Supervised Care",
-      desc: "Every patient is personally evaluated and supervised by the doctor throughout treatment. We accept a limited number of patients to ensure deep clinical oversight.",
-      image: "/images/help1.jpg"
-    },
-    {
-      icon: Sliders,
-      title: "Dynamic, Response-Based Treatment",
-      desc: "Treatment plans are not fixed as packages in advance. Decisions are made with close observation and may be adjusted daily based on your condition.",
-      image: "/images/doctor2.jpg"
-    },
-    {
-      icon: Clock,
-      title: "15+ Years Managing Complex Cases",
-      desc: "With over 15 years of clinical experience, we have successfully worked with individuals facing long-standing and exceptionally difficult health challenges.",
-      image: "/images/help4.jpg"
-    },
-  ];
-
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-secondary/40 via-secondary/20 to-white relative">
+    <section className="pt-32 md:pt-40 pb-24 bg-zinc-50 relative border-t-4 border-white min-h-screen flex flex-col justify-start">
       <div className="max-w-7xl mx-auto px-6">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 drop-shadow-sm">Why Patients Choose AyurCare</h2>
-          <p className="text-xl text-gray-700 font-medium">
-            Focused, doctor-led care for those seeking serious and personalized Ayurvedic treatment.
-          </p>
+          <div className="flex items-center space-x-2 text-primary font-bold mb-4 uppercase tracking-widest text-sm">
+             <Star size={16} className="fill-secondary text-secondary" />
+             <span>The AyurCare Standard</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">
+            Why Patients Trust Our Clinical Approach
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => {
-            const Icon = reason.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.4 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500 flex flex-col group border border-white relative z-10"
-              >
-                <div className="h-48 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
-                  <img 
-                    src={reason.image} 
-                    alt={reason.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  {/* Floating Icon overlapping image and text */}
-                  <div className="absolute -bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center text-white shadow-lg rotate-3 group-hover:rotate-6 transition-transform z-20">
-                    <Icon size={24} />
-                  </div>
-                </div>
-                
-                <div className="p-6 md:p-8 pt-8 md:pt-10 flex-grow flex flex-col">
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 tracking-tight">{reason.title}</h3>
-                  <p className="text-gray-600 text-base md:text-lg leading-relaxed flex-grow">{reason.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Bento Box Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[300px] md:auto-rows-[350px]">
+          
+          {/* Main Large Bento Box - Span 2 Columns */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.1, type: "spring", bounce: 0.4 }}
+            className="lg:col-span-2 lg:row-span-2 bg-zinc-900 text-white rounded-[2.5rem] overflow-hidden flex flex-col relative group"
+          >
+            <div className="absolute inset-0 w-full h-[55%]">
+               <img 
+                 src="/images/help1.jpg" 
+                 alt="Doctor Supervised Care" 
+                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent" />
+            </div>
+            
+            <div className="relative z-10 p-10 md:p-14 mt-auto flex flex-col h-full justify-end">
+              <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-secondary mb-8 border border-white/10">
+                 <UserCheck size={32} />
+              </div>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                Doctor-Led & Personally Supervised Care
+              </h3>
+              <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed">
+                Every patient is personally evaluated and supervised by the doctor throughout treatment. We intentionally accept a limited number of patients to ensure deep clinical oversight and dedicated healing environments.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Small Bento Box 1 - Primary Green */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
+            className="lg:col-span-1 lg:row-span-1 bg-primary rounded-[2.5rem] p-8 md:p-10 flex flex-col relative overflow-hidden group shadow-xl shadow-primary/20"
+          >
+            {/* Subtle background abstract shape */}
+            <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
+            
+            <div className="flex justify-between items-start mb-auto relative z-10">
+               <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/20">
+                 <Sliders size={28} />
+               </div>
+            </div>
+            
+            <div className="relative z-10 mt-6">
+              <h3 className="text-2xl font-bold text-white mb-4">Dynamic, Response-Based</h3>
+              <p className="text-white/80 font-medium leading-relaxed">
+                Treatment plans are not fixed in advance. Decisions are made daily, adjusting herbs and therapies based directly on your body&apos;s response.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Small Bento Box 2 - Image Heavy / Warm Tone */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
+            className="lg:col-span-1 lg:row-span-1 bg-secondary rounded-[2.5rem] p-8 md:p-10 text-zinc-900 flex flex-col relative overflow-hidden group"
+          >
+            <div className="absolute inset-0">
+               <img src="/images/help4.jpg" alt="15 Years Experience" className="w-full h-full object-cover opacity-20 mix-blend-multiply group-hover:scale-110 transition-transform duration-1000" />
+            </div>
+
+            <div className="flex justify-between items-start mb-auto relative z-10">
+               <div className="w-14 h-14 bg-white/30 backdrop-blur-md rounded-2xl flex items-center justify-center text-zinc-900 border border-white/40">
+                 <Clock size={28} />
+               </div>
+            </div>
+            
+            <div className="relative z-10 mt-6">
+              <h3 className="text-2xl font-bold mb-4 tracking-tight">15+ Years Managing Complex Cases</h3>
+              <p className="text-zinc-800 font-medium leading-relaxed">
+                Over a decade of successful clinical experience working specifically with individuals facing long-standing and exceptionally difficult health challenges.
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

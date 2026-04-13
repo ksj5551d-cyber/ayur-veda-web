@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Activity, Shield, Users, BookOpen, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Activity, Shield, Users, BookOpen, ArrowRight } from "lucide-react";
 
-const cards = [
+const categories = [
   {
     icon: Activity,
     title: "Chronic & Long-Standing Health Conditions",
@@ -24,68 +25,105 @@ const cards = [
   },
   {
     icon: BookOpen,
-    title: "Serious Learners of Ayurveda & Professionals",
+    title: "Serious Learners of Ayurveda",
     desc: "Yoga teachers, therapists, and healthcare practitioners seeking authentic clinical understanding through structured courses and immersion programs.",
     image: "/images/help4.jpg"
   },
 ];
 
 export default function WhoWeHelp() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-secondary/30 relative text-primary">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 drop-shadow-sm">Who We Help</h2>
-          <p className="text-xl font-medium text-gray-800">
-            People seeking serious, personalized Ayurvedic care or structured Ayurvedic learning.
-          </p>
-        </motion.div>
+    <section className="pt-32 md:pt-40 pb-24 bg-primary relative text-white overflow-hidden border-t-4 border-secondary/50 min-h-screen flex flex-col justify-start">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+        
+        {/* Left Side: Accordion List */}
+        <div className="lg:w-1/2 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl md:leading-tight font-bold mb-6">Who We Help</h2>
+            <p className="text-xl text-white/80 font-medium">
+              People seeking serious, personalized Ayurvedic care or structured Ayurvedic learning.
+            </p>
+          </motion.div>
 
-        <div className="flex md:grid md:grid-cols-2 gap-6 lg:gap-10 overflow-x-auto hide-scrollbar mobile-scroll-snap pb-8 md:pb-0 px-4 -mx-4 md:px-0 md:mx-0">
-          {cards.map((card, index) => {
-            const Icon = card.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.4 }}
-                whileHover={{ y: -10 }}
-                className="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:shadow-primary/20 transition-shadow duration-500 min-h-[320px] lg:min-h-[400px] flex flex-col justify-end min-w-[300px] md:min-w-0 z-10"
-              >
-                {/* Background Image */}
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                />
-                
-                {/* Overlays */}
-                <div className="absolute inset-0 bg-primary/40 mix-blend-multiply transition-opacity group-hover:opacity-60" />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent opacity-90" />
-
-                <div className="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:rotate-12">
-                   <ArrowUpRight size={24} />
-                </div>
-
-                <div className="relative z-10 p-8 md:p-10 flex flex-col">
-                  <div className="w-14 h-14 bg-secondary text-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:-translate-y-2 transition-transform">
-                    <Icon size={28} />
+          <div className="flex flex-col gap-6">
+            {categories.map((cat, index) => {
+              const Icon = cat.icon;
+              const isActive = activeIndex === index;
+              
+              return (
+                <div 
+                  key={index}
+                  className={`group relative pl-8 pb-6 border-l-2 cursor-pointer transition-colors duration-500 ${
+                    isActive ? "border-secondary" : "border-white/20 hover:border-white/50"
+                  }`}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {/* Floating Icon Marker */}
+                  <div className={`absolute -left-[26px] top-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl ${
+                    isActive ? "bg-secondary text-primary scale-110" : "bg-white/10 text-white scale-100 group-hover:bg-white/20"
+                  }`}>
+                    <Icon size={24} />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug">{card.title}</h3>
-                  <p className="text-white/80 leading-relaxed font-medium">{card.desc}</p>
+
+                  <h3 className={`text-2xl md:text-3xl font-bold transition-colors duration-300 mt-1 ${
+                    isActive ? "text-white" : "text-white/60 group-hover:text-white/90"
+                  }`}>
+                    {cat.title}
+                  </h3>
+                  
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="mt-4 text-white/80 text-lg leading-relaxed">
+                          {cat.desc}
+                        </p>
+                        <button className="mt-6 flex items-center space-x-2 text-secondary font-bold hover:text-white transition-colors">
+                          <span>Learn More</span>
+                          <ArrowRight size={18} />
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
+
+        {/* Right Side: Sticky Image Area */}
+        <div className="lg:w-1/2 relative h-[500px] lg:h-[700px] mt-8 lg:mt-0 lg:sticky lg:top-32 rounded-3xl overflow-hidden shadow-2xl">
+           <AnimatePresence mode="wait">
+             <motion.img
+               key={`img-${activeIndex}`}
+               src={categories[activeIndex].image}
+               alt={categories[activeIndex].title}
+               initial={{ opacity: 0, scale: 1.05 }}
+               animate={{ opacity: 1, scale: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 0.6, ease: "easeOut" }}
+               className="absolute inset-0 w-full h-full object-cover"
+             />
+           </AnimatePresence>
+           
+           {/* Dark Gradient Overlay for premium feel */}
+           <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+        </div>
+
       </div>
     </section>
   );

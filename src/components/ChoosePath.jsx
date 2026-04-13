@@ -1,81 +1,126 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Leaf, GraduationCap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function ChoosePath() {
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+
   const paths = [
     {
       title: "Panchakarma Treatment",
       desc: "Doctor-led personalized care for chronic and difficult conditions, including medically supervised Panchakarma.",
       points: ["Doctor-supervised therapies", "Customized dietary plans", "Daily clinical assessment"],
       image: "/images/help2.jpg",
-      link: "/treatment"
+      link: "/treatment",
     },
     {
       title: "Learn Ayurveda",
       desc: "Authentic clinical learning through online courses and immersive programs for serious students and health professionals.",
       points: ["Structured curriculum", "One-on-one mentorship", "Practical clinical exposure"],
       image: "/images/help4.jpg",
-      link: "/learn"
+      link: "/learn",
     }
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white via-secondary/10 to-secondary/40 border-y border-secondary/20 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 drop-shadow-sm">Choose Your Path at AyurCare</h2>
-          <p className="text-xl text-gray-600">
-            Whether you are seeking treatment or deeper learning, we offer personalized clinical guidance at every step.
-          </p>
-        </motion.div>
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-start overflow-hidden bg-black text-white pt-32 pb-20 px-6">
+      
+      {/* Dynamic Backgrounds */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={`bg-${hoveredIndex}`}
+            src={paths[hoveredIndex].image}
+            alt="background"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.4, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+        {/* Soft Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {paths.map((path, index) => (
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative z-10 text-center mb-16 mt-8"
+      >
+        <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
+           <Sparkles size={16} className="text-secondary" />
+           <span className="text-sm font-semibold tracking-widest uppercase text-zinc-300">Your Journey</span>
+        </div>
+        <h2 className="text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">Choose Your Path</h2>
+      </motion.div>
+
+      {/* Floating Glass Cards Container */}
+      <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row gap-8 lg:gap-12 justify-center items-stretch h-full mt-4">
+        {paths.map((path, index) => {
+           const isActive = hoveredIndex === index;
+           
+           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-500 flex flex-col group relative"
+              className={`relative flex flex-col p-8 md:p-10 rounded-[2.5rem] transition-all duration-700 ease-out border overflow-hidden backdrop-blur-xl md:w-1/2 min-h-[450px]
+                ${isActive 
+                  ? 'bg-white/15 border-white/30 shadow-[0_0_50px_rgba(255,255,255,0.1)] -translate-y-4' 
+                  : 'bg-white/5 border-white/10 hover:bg-white/10 scale-95 opacity-70'}
+              `}
+              onMouseEnter={() => setHoveredIndex(index)}
+              style={{ cursor: "pointer" }}
             >
-              <div className="h-64 relative overflow-hidden w-full m-0 p-0">
-                <img src={path.image} alt={path.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-80" />
-                <h3 className="absolute bottom-6 left-8 text-3xl font-bold text-white z-10 drop-shadow-md">{path.title}</h3>
-              </div>
-                <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-white">
-                  <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
-                    {path.desc}
-                  </p>
-                  <div className="space-y-3 mb-8 flex-grow">
-                    {path.points.map((point, i) => (
-                      <div key={i} className="flex items-center space-x-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-secondary flex-shrink-0" />
-                        <span className="font-medium text-gray-800 text-sm md:text-base">{point}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <Link href={path.link} className="w-full">
-                      <button className="flex items-center justify-between w-full p-4 rounded-2xl bg-zinc-50 group-hover:bg-primary group-hover:text-white transition-all text-primary font-semibold shadow-sm text-base md:text-lg">
-                        <span>Explore</span>
-                        <ArrowRight size={18} />
+              {/* Inner glowing orb effect for active card */}
+              {isActive && (
+                <div className="absolute -top-32 -right-32 w-64 h-64 bg-white/20 rounded-full blur-[80px]" />
+              )}
+
+              <div className="relative z-10 flex flex-col h-full">
+                <h3 className={`text-3xl lg:text-4xl font-bold mb-6 transition-colors duration-500 ${isActive ? 'text-white' : 'text-white/80'}`}>
+                  {path.title}
+                </h3>
+                 
+                <p className={`text-lg mb-8 leading-relaxed transition-all duration-500 ${isActive ? 'text-white/90' : 'text-white/60'}`}>
+                  {path.desc}
+                </p>
+                 
+                <div className="space-y-4 mb-auto">
+                  {path.points.map((point, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: isActive ? 1 : 0.5, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center space-x-3"
+                    >
+                      <div className={`w-2 h-2 rounded-full flex-shrink-0 transition-colors ${isActive ? 'bg-secondary' : 'bg-white/30'}`} />
+                      <span className={`font-medium ${isActive ? 'text-white/90' : 'text-white/50'}`}>{point}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-12">
+                  <Link href={path.link} className="w-full block">
+                      <button className={`w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-bold text-lg transition-all duration-500
+                        ${isActive 
+                          ? 'bg-white text-black shadow-xl hover:scale-[1.02]' 
+                          : 'bg-white/10 text-white group-hover:bg-white/20'}
+                      `}>
+                        <span>Explore {index === 0 ? "Clinical Care" : "Programs"}</span>
+                        <ArrowRight size={20} className={isActive ? "text-black" : "text-white/60"} />
                       </button>
                   </Link>
                 </div>
+              </div>
             </motion.div>
-          ))}
-        </div>
+           )
+        })}
       </div>
     </section>
   );
