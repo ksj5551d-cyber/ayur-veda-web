@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CheckCircle2, ChevronRight, Leaf, Sparkles, Heart } from "lucide-react";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import PanchakarmaCarousel from "../../components/PanchakarmaCarousel";
 
 export default function Panchakarma() {
   return (
@@ -134,6 +135,9 @@ export default function Panchakarma() {
           </div>
         </div>
       </section>
+
+      {/* Treatments Carousel */}
+      <PanchakarmaCarousel />
 
       {/* CTA Section */}
       <section className="py-24 bg-emerald-950 relative overflow-hidden text-center">
