@@ -5,6 +5,12 @@
   --foreground: #171717;
   --primary: #102C26;
   --secondary: #f7e7ce;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+:root::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 @theme inline {
@@ -30,6 +36,13 @@ body {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 /* Custom Scroll Utilities for Mobile */

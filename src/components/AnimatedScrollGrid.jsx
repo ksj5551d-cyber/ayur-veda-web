@@ -111,7 +111,7 @@ function ScrollGridRenderer({ scrollYProgress, totalStages, childrenArray }) {
               transition={{ duration: 0.5 }}
               className="relative w-full h-full flex flex-col bg-white z-40"
             >
-              <div className="w-full h-full flex flex-col relative overflow-y-auto">
+              <div className="w-full h-full flex flex-col relative overflow-y-auto hide-scrollbar">
                 {elements[activeIndex - 1]}
               </div>
             </motion.div>
