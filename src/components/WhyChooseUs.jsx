@@ -5,7 +5,7 @@ import { UserCheck, Sliders, Clock, Star } from "lucide-react";
 
 export default function WhyChooseUs() {
   return (
-    <section className="pt-32 md:pt-40 pb-24 bg-zinc-50 relative border-t-4 border-white min-h-screen flex flex-col justify-start">
+    <section className="pt-20 md:pt-40 pb-20 bg-zinc-50 relative border-t-4 border-white min-h-screen flex flex-col justify-start">
       <div className="max-w-7xl mx-auto px-6">
         
         <motion.div
@@ -41,10 +41,10 @@ export default function WhyChooseUs() {
                  alt="Doctor Supervised Care" 
                  className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0"
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent" />
+               {/* <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent" /> */}
             </div>
             
-            <div className="relative z-10 p-10 md:p-14 mt-auto flex flex-col h-full justify-end">
+            <div className="relative z-10 p-6 md:p-14 mt-auto flex flex-col h-full justify-end">
               <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-secondary mb-8 border border-white/10">
                  <UserCheck size={32} />
               </div>
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
-            className="lg:col-span-1 lg:row-span-1 bg-primary rounded-[2.5rem] p-8 md:p-10 flex flex-col relative overflow-hidden group shadow-xl shadow-primary/20"
+            className="lg:col-span-1 lg:row-span-1 bg-primary rounded-[2.5rem] p-6 md:p-10 flex flex-col relative overflow-hidden group shadow-xl shadow-primary/20"
           >
             {/* Subtle background abstract shape */}
             <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
-            className="lg:col-span-1 lg:row-span-1 bg-secondary rounded-[2.5rem] p-8 md:p-10 text-zinc-900 flex flex-col relative overflow-hidden group"
+            className="lg:col-span-1 lg:row-span-1 bg-secondary rounded-[2.5rem] p-6 md:p-10 text-zinc-900 flex flex-col relative overflow-hidden group"
           >
             <div className="absolute inset-0">
                <img src="/images/help4.jpg" alt="15 Years Experience" className="w-full h-full object-cover opacity-20 mix-blend-multiply group-hover:scale-110 transition-transform duration-1000" />

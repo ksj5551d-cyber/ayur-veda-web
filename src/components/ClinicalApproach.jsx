@@ -26,7 +26,7 @@ export default function ClinicalApproach() {
   ];
 
   return (
-    <section className="w-full py-10 md:py-14 bg-gradient-to-b from-white top-50 to-secondary/30">
+    <section className="w-full py-10 md:py-14 bg-gradient-to-b from-white to-secondary/30">
       <div className="max-w-7xl mx-auto px-6 relative z-10 mt-23">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ export default function ClinicalApproach() {
                   transition={{ duration: 0.5, delay: index * 0.15 }}
                   className="bg-white rounded-[1.5rem] p-4 md:p-5 shadow-sm hover:shadow-lg border border-gray-100 flex items-start space-x-4 group transition-all"
                 >
-                  <div className="w-16 h-16 bg-secondary/40 text-primary rounded-full flex flex-shrink-0 flex-col items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="w-16 h-16 bg-secondary/20 text-primary rounded-full flex flex-shrink-0 flex-col items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                     <span className="text-sm font-bold opacity-60">Step</span>
                     <span className="text-xl font-black">{step.num}</span>
                   </div>

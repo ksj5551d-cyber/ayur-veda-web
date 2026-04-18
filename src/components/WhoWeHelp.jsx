@@ -35,7 +35,7 @@ export default function WhoWeHelp() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="pt-32 md:pt-40 pb-24 bg-primary relative text-white overflow-hidden border-t-4 border-secondary/50 min-h-screen flex flex-col justify-start">
+    <section className="pt-20 md:pt-40 pb-20 bg-primary relative text-white overflow-hidden border-t-4 border-secondary/50 min-h-screen flex flex-col justify-start">
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
         
         {/* Left Side: Accordion List */}
@@ -47,7 +47,7 @@ export default function WhoWeHelp() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-4xl md:text-5xl md:leading-tight font-bold mb-6">Who We Help</h2>
+            <h2 className="text-3xl md:text-5xl md:leading-tight font-bold mb-6">Who We Help</h2>
             <p className="text-xl text-white/80 font-medium">
               People seeking serious, personalized Ayurvedic care or structured Ayurvedic learning.
             </p>

@@ -61,3 +61,8 @@ body::-webkit-scrollbar {
 .mobile-scroll-snap > * {
   scroll-snap-align: center;
 }
+
+/* Spacer to prevent content overlap with floating bottom nav */
+.mobile-bottom-spacer {
+  @apply pb-32 md:pb-0;
+}

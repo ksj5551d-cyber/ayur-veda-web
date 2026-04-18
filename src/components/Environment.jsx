@@ -25,7 +25,7 @@ const FloatingLeaf = ({ className, delay }) => (
 
 export default function Environment() {
   return (
-    <section className="relative min-h-screen w-full flex items-center overflow-hidden">
+    <section className="relative min-h-screen w-full flex items-center overflow-hidden mobile-bottom-spacer">
       {/* Background Image - Covers full height */}
       <div className="absolute inset-0 z-0">
         <img
